@@ -19,3 +19,5 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
 
 end
+
+#resources :コントローラー名　で７つのアクションが自動で定義された。
