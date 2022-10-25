@@ -1,11 +1,21 @@
 Rails.application.routes.draw do
   devise_for :users
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
   root to: 'prototypes#index'
+  get 'users/:id' => 'users#show'
+  #↑URLが打ち込まれた際にusersコントローラーのshowアクションを開く。
+
+=begin
   get '/users/sign_up' => 'devise/registrations#new'
   post '/users' => 'devise/registrations#create'
+  get 'users/:id' => 'users#edit'
 
-  #resources :prototypes, only: [:index]
-  resources :users, only: [:edit, :update]
+  post '/prototypes' => 'prototypes#create'
+  get '/prototypes/:id' => 'prototypes#show'
+=end
+  resources :prototypes do
+    resources :comments, only: [:create]
+  end
+  resources :users, only: [:show]
 
 end
